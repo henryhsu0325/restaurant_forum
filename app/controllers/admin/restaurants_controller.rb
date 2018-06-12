@@ -52,7 +52,7 @@ class Admin::RestaurantsController < ApplicationController
     params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, 
   :description, :image, :category_id)
   end
-  
+
   def set_restaurant
     @restaurant = Restaurant.find(params[:id])
   end
