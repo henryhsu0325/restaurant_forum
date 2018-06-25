@@ -1,6 +1,5 @@
-class Admin::CategoriesController < Admin::BaseController
- before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
-
+class Admin::RestaurantsController < Admin::BaseController
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
     @restaurants = Restaurant.page(params[:page]).per(10)
@@ -8,12 +7,6 @@ class Admin::CategoriesController < Admin::BaseController
 
   def new
     @restaurant = Restaurant.new
-  end
-
-  def show   
-  end
-
-  def edit
   end
 
   def create
@@ -39,18 +32,17 @@ class Admin::CategoriesController < Admin::BaseController
 
   def destroy
     @restaurant.destroy
-    redirect_to admin_restaurants_path
     flash[:alert] = "restaurant was deleted"
+    redirect_to admin_restaurants_path
   end
 
   private
 
-  def restaurant_params
-    params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, 
-  :description, :image, :category_id)
-  end
-
   def set_restaurant
     @restaurant = Restaurant.find(params[:id])
+  end
+
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :opening_hours, :tel, :address, :description, :image, :category_id)
   end
 end
