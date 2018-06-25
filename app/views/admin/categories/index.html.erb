@@ -7,13 +7,18 @@
   </div>
   <br>
   <div class="form-inline" >
+    <!-- [:admin, @category] :admin 是 namespace 的路徑。 -->
     <%= form_for [:admin, @category] do |f| %>
       <div class="form-group">
         <%= f.text_field :name, placeholder: "Category Name",  class: "form-control" %>
       </div>
       <%= f.submit class: "btn btn-primary" %>
+      <% if @category.errors.any? %>
+        <%= @category.errors.full_messages.to_sentence %>
+      <% end %>
     <% end %>
   </div>
+  <br>
 
   <div class="row">
 
@@ -27,7 +32,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @Categories.each do |category| %>
+          <% @categories.each do |category| %>
           <tr>
             <th scope="row"><%= category.id %></th>
             <td><%= category.name %></td>
@@ -35,8 +40,6 @@
           <% end %>
         </tbody>
       </table>
-
-  
 
     </div>
 
