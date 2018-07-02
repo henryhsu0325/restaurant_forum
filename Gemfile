@@ -14,7 +14,8 @@ gem 'pg', '~> 0.21.0'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.7'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 3.2'
+gem 'jquery-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -36,7 +37,6 @@ gem 'devise'
 gem 'carrierwave'
 gem 'ffaker'
 gem 'kaminari'
-gem 'jquery-rails'
 
 
 group :development, :test do
