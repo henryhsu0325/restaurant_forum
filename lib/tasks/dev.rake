@@ -1,5 +1,5 @@
 namespace :dev do
-
+  
   task fake_restaurant: :environment do
     Restaurant.destroy_all
 
@@ -21,24 +21,25 @@ namespace :dev do
       user_name = FFaker::Name.first_name
       User.create!(
         email: "#{user_name}@example.com",
-        password: "12345678"        
+        password: "12345678"
       )
     end
     puts "have created fake users"
     puts "now you have #{User.count} users data"
   end
 
-  task fake_comment: :environment do
+
+   task fake_comment: :environment do
     Restaurant.all.each do |restaurant|
-    3.times do |i|
-      restaurant.comments.create!(
-        context: FFaker::Lorem.sentence,
-        user: User.all.sample
-      )
+      3.times do |i|
+        restaurant.comments.create!(
+          context: FFaker::Lorem.sentence,
+          user: User.all.sample
+        )
+      end
     end
+    puts "have created fake comments"
+    puts "now you have #{Comment.count} comment data"
   end
-  puts "have created fake commments"
-  puts "now you have #{Comment.count} comment data"
-end
 
 end
