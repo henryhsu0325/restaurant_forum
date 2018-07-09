@@ -27,3 +27,21 @@
   width: 50px;
   margin: 10px;
 }
+
+.my-restaurant {
+  display: inline-block;
+  text-align: center;
+  padding: 6px 6px 0 7px;
+}
+
+.my-restaurant > div {
+  height: 65px;
+}
+
+.my-restaurant img {
+  max-height: 100%;
+}
+
+.panel a:hover .my-restaurant {
+  background-color: #eee;
+}
