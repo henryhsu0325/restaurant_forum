@@ -7,13 +7,15 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   
-  # 若user已留下評論，不允許刪除此帳號（刪除時顯示Error）
+  # 若 user 已留下評論，不允許刪除此帳號（刪除時顯示 Error ）
   # 「使用者評論很多餐廳」的多對多關聯
   has_many :comments, dependent: :restrict_with_error 
   has_many :restaurants, through: :comments
 
-  # 設定其依賴的User物件被刪除時，相關的Favorite物件會一併刪除
-  # 「使用者收藏很多餐廳」的多對多關聯，用favorited_restaurants以利讓系統分辨要索取的資訊
+  # 設定其依賴的 User 物件被刪除時，相關的 Favorite 物件會一併刪除
+  #「使用者收藏很多餐廳」的多對多關聯
+  # 關聯名稱會和「使用者評論很多餐廳」重複，將關聯名稱自訂為：favorited_restaurants
+  # 自訂名稱後， Rails 無法自動推論來源名稱，需另加 source 告知 model name
   has_many :favorites, dependent: :destroy
   has_many :favorited_restaurants, through: :favorites, source: :restaurant
 
