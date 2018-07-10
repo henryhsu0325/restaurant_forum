@@ -4,6 +4,9 @@ class Restaurant < ApplicationRecord
 
   belongs_to :category
   
-  # 當Restaurant 物件被刪除時，會順道刪除其下面的Comment
+  # 當Restaurant物件被刪除時，會順便刪除其下面的Comment
   has_many :comments, dependent: :destroy
+
+  has_many :favorites, dependent: :destroy
+  has_many :favorited_users, through: :favorites, source: :user
 end
