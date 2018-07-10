@@ -1,21 +1,26 @@
 Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   resources :restaurants, only: [:index, :show] do
     resources :comments, only: [:create, :destroy]
 
-    # 瀏覽所有餐廳的最新動態
     collection do
+      # 瀏覽所有餐廳的最新動態
+      # GET restaurants/feeds
       get :feeds
     end
-
-    # 瀏覽個別餐廳的 Dashboard
-    # id @restaurant --> action
+   
     member do
+      # 瀏覽個別餐廳的 Dashboard
+      # GET restaurants/:id/dashboard
       get :dashboard
+
+      # favorite / unfavorite action 不需樣板，習慣使用Post
+      post :favorite
+      post :unfavorite
     end
   end
-
 
   resources :users, only: [:show, :edit, :update]
 
