@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       # favorite / unfavorite action 不需樣板，習慣使用Post
       post :favorite
       post :unfavorite
+
+      post :like
+      post :unlike
     end
   end
 
