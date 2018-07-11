@@ -1,4 +1,4 @@
 class Like < ApplicationRecord
-  belomg_to :user
-  belomg_to :restaurant
+  belongs_to :user
+  belongs_to :restaurant
 end
