@@ -21,6 +21,11 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :liked_restaurants, through: :likes, source: :restaurant
+ 
+  # 設定 User和 followships 的多對多關聯 
+  # 不需要另加 source，Rails 可從 Followship Model 設定來判斷 followings 指向 User Model
+  has_many :followships, dependent: :destroy
+  has_many :followings, through: :followships
 
     # admin? 讓我們用來判斷單個user是否有 admin 角色，列如：current_user.admin?
   def admin?
