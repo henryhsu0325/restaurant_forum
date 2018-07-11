@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       # 瀏覽所有餐廳的最新動態
       # GET restaurants/feeds
       get :feeds
-      
+
       # 十大人氣餐廳
       get :ranking
     end
@@ -28,7 +28,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update]
+  resources :followships, only: [:create, :destroy]
 
   resources :categories, only: :show
   root "restaurants#index"
