@@ -29,8 +29,6 @@ namespace :dev do
     puts "now you have #{User.count} users data"
   end
 
-
-
    task fake_comment: :environment do
     Restaurant.all.each do |restaurant|
       3.times do |i|

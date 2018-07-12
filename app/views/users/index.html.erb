@@ -3,7 +3,9 @@
   <% @users.each do |user| %>
     <li>
       <%= user.name %>
+      <!-- 注意 POST/DELETE 的動作導向目的地不相同 -->
       <%= link_to 'Follow', followships_path(following_id: user), method: :post %>   
+      <%= link_to 'Unfollow', followship_path(user), method: :delete %>
     </li>
   <% end %>
 
