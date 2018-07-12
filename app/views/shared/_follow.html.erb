@@ -1,0 +1,8 @@
+<% if user != current_user %>
+  <% if current_user.following?(user) %> 
+  <!-- 注意 POST/DELETE 的動作導向目的地不相同 -->
+    <%= link_to 'Unfollow', followship_path(user), method: :delete %>
+  <% else %> 
+    <%= link_to 'Follow', followships_path(following_id: user), method: :post %>
+  <% end %> 
+<% end %>
