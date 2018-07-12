@@ -9,7 +9,8 @@ namespace :dev do
         tel: FFaker::PhoneNumber.short_phone_number,
         address: FFaker::Address.street_address,
         description: FFaker::Lorem.paragraph,
-        category: Category.all.sample
+        category: Category.all.sample,
+        image: File.open(Rails.root.join("seed_img/#{rand(0..30)}.jpg"))
       )
     end
     puts "have created fake restaurants"
@@ -27,6 +28,7 @@ namespace :dev do
     puts "have created fake users"
     puts "now you have #{User.count} users data"
   end
+
 
 
    task fake_comment: :environment do
