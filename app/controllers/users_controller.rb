@@ -6,8 +6,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @commented_restaurants = @user.restaurants
+    @commented_restaurants = @user.restaurants.uniq
+    @favorited_restaurants = @user.favorited_restaurants
+    @followings = @user.followings
+    @followers = @user.followers
   end
 
   def edit
