@@ -1,11 +1,13 @@
 class Admin::CategoriesController < Admin::BaseController
+  before_action :authenticate_admin
+  
   before_action :set_category, only: [:update, :destroy]
 
   def index
     @categories = Category.all
 
     if params[:id]
-      set_category
+    set_category
     else
       @category = Category.new
     end
@@ -24,8 +26,8 @@ class Admin::CategoriesController < Admin::BaseController
 
   def update
     if @category.update(category_params)
-      redirect_to admin_categories_path
       flash[:notice] = "category was successfully updated"
+      redirect_to admin_categories_path
     else
       @categories = Category.all
       render :index
