@@ -25,12 +25,17 @@ namespace :dev do
     end
 
     20.times do |i|
-      user_name = FFaker::Name.first_name
-      User.create!(
-        name: user_name,
-        email: "#{user_name}@123.com",
+      name = FFaker::Name::first_name
+      file = File.open("#{Rails.root}/public/avatar/user#{i+1}.jpg")
+
+      user = User.new(
+        name: name,
+        email: "#{name}@example.com",
         password: "12345678",
+        introduction: FFaker::Lorem::sentence(30),
+        avatar: file
       )
+
     end
     puts "have created fake users"
     puts "now you have #{User.count} users data"
