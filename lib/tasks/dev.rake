@@ -25,17 +25,15 @@ namespace :dev do
     end
 
     20.times do |i|
-      name = FFaker::Name::first_name
+      user_name = FFaker::Name::first_name
       file = File.open("#{Rails.root}/public/avatar/user#{i+1}.jpg")
-
-      user = User.new(
-        name: name,
-        email: "#{name}@example.com",
+        User.create!(
+        name: user_name,
+        email: "#{user_name}@123.com",
         password: "12345678",
-        introduction: FFaker::Lorem::sentence(30),
+        intro: FFaker::Lorem::sentence(30),
         avatar: file
       )
-
     end
     puts "have created fake users"
     puts "now you have #{User.count} users data"
@@ -46,7 +44,7 @@ namespace :dev do
     Restaurant.all.each do |restaurant|
       3.times do |i|
         restaurant.comments.create!(
-          context: FFaker::Lorem.sentence,
+          content: FFaker::Lorem.sentence,
           user: User.all.sample
         )
       end
